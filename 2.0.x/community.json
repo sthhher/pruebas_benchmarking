@@ -5,19 +5,15 @@
 	"$comment": "allOf and placeholders inspired by https://stackoverflow.com/a/24365393",
 	"allOf": [
 		{
-			"$comment": "It declares _canonical_id, _metadata, _revision, _updated, _deleted, _created",
 			"$ref": "./_shared.json#/definitions/CommonKeys"
 		},
 		{
-			"$comment": "Declaration of references",
 			"$ref": "./_shared.json#/definitions/ReferencesProp"
 		},
 		{
-			"$comment": "Declaration of links",
 			"$ref": "./_shared.json#/definitions/LinksProp"
 		},
 		{
-			"$comment": "Declarations of name, description",
 			"$ref": "./_shared.json#/definitions/NameDescProp"
 		}
 	],
