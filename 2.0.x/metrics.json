@@ -1,0 +1,114 @@
+{
+	"$id": "https://www.elixir-europe.org/excelerate/WP2/json-schemas/2.0/Metrics",
+	"$schema": "https://json-schema.org/draft/2019-09/schema",
+	"title": "Metrics concept (OpenEBench Benchmarking Data Model schemas)",
+	"$comment": "allOf and placeholders inspired by https://stackoverflow.com/a/24365393",
+	"allOf": [
+		{
+			"$comment": "It declares _canonical_id, _metadata, _revision, _updated, _deleted, _created",
+			"$ref": "_shared#/definitions/CommonKeys"
+		},
+		{
+			"$comment": "Declaration of orig_id",
+			"$ref": "_shared#/definitions/OrigIdProp"
+		},
+		{
+			"$comment": "Declaration of references",
+			"$ref": "_shared#/definitions/ReferencesProp"
+		},
+		{
+			"$comment": "Declaration of links",
+			"$ref": "_shared#/definitions/LinksProp"
+		},
+		{
+			"$comment": "Declarations of name, description",
+			"$ref": "_shared#/definitions/NameDescProp"
+		}
+	],
+	"type": "object",
+	"properties": {
+		"_id": {
+			"title": "The unique id of the metrics",
+			"type": "string",
+			"oneOf": [
+				{
+					"$ref": "_shared#/definitions/OriginalIdOnSub"
+				},
+				{
+					"$ref": "_shared#/definitions/MetricsTemporaryId"
+				},
+				{
+					"$ref": "_shared#/definitions/MetricsId"
+				}
+			]
+		},
+		"_schema": {
+			"title": "The JSON schema absolute URI. It must match the value of 'id' in the JSON schema",
+			"type": "string",
+			"format": "uri",
+			"enum": [ "https://www.elixir-europe.org/excelerate/WP2/json-schemas/2.0/Metrics" ]
+		},
+		
+		"orig_id": {
+			"$comment": "Placeholder covered by _shared#/definitions/OrigIdProp",
+			"title": "The metrics original id"
+		},
+		
+		"references": {
+			"$comment": "Placeholder covered by _shared#/definitions/ReferencesProp",
+			"title": "The reference id(s) of this dataset (if any)"
+		},
+		
+		"links": {
+			"$comment": "Placeholder covered by _shared#/definitions/LinksProp",
+			"title": "Optional links related to the metrics"
+		},
+		
+		"name": {
+			"$comment": "Placeholder covered by _shared#/definitions/NameDescProp",
+			"title": "Short metrics name"
+		},
+		"description": {
+			"$comment": "Placeholder covered by _shared#/definitions/NameDescProp",
+			"title": "Long metrics description, in Markdown format"
+		},
+		
+		"metrics_contact_ids": {
+			"title": "The contact id(s) of the creators of this metrics",
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"type": "string",
+				"foreign_keys": [
+					{
+						"schema_id": "Contact",
+						"members": [ "." ]
+					}
+				],
+				"minLength": 1
+			}
+		},
+		"formal_definition": {
+			"title": "Formal definition of the metrics",
+			"type": "string"
+		},
+		"execution_type": {
+			"title": "Type of execution",
+			"type": "string"
+		},
+		"data_schemas": {
+			"title": "Data schemas",
+			"type": "string"
+		},
+		"representation_hints": {
+			"title": "The optional representation hints which can be used or ignored by any data browser / viewer",
+			"type": "object",
+			"additionalProperties": true,
+			"minProperties": 1
+		}
+	},
+	"unevaluatedProperties": false,
+	"required": ["_id","_schema","name","metrics_contact_ids"],
+	"primary_key": ["_id"],
+	"dependencies": {}
+}
